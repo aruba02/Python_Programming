@@ -124,3 +124,11 @@ stocks = (
 # 총 재고 금액 출력
 
 print(sum(b*c for _,b,c in stocks))                                                    # ✅ 총액: 21,000원
+
+stocks = (
+    ("사과", "바나나", "체리"),
+    (1000,2000,5000),
+    (5,3,2),
+)
+
+print(sum(price*num for _,price,num in zip(*stocks)))
