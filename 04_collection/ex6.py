@@ -79,6 +79,10 @@ words = ["apple", "banana", "apple", "cherry", "banana", "apple"]
 result = {k:words.count(k) for k in words}
 print(result)                                    # ✅ {'apple': 3, 'banana': 2, 'cherry': 1}
 
+# counter 요소 개수를 자동으로 세어주는 딕셔너리 서브클래스
+from collections import Counter as Cnt
+print(dict(Cnt(words)))
+
 
 # 2️⃣ 60점 이상인 경우 합격 설정하기
 scores = {"국어": 85, "영어": 50, "수학": 95, "과학": 40, "사회": 72}
@@ -99,5 +103,6 @@ print(result)                                    # ✅ {'국어': 90, '영어': 
 stock = {"연필": 10, "지우개": 5, "노트": 3}        # 기존 재고
 incoming = {"지우개": 4, "노트": 7, "볼펜": 12}     # 입고 내역
 
-stock.update({k:stock[k]+v if k in stock else v for k,v in incoming.items()})
+# stock.update({k:stock[k]+v if k in stock else v for k,v in incoming.items()})
+stock.update({item: stock.get(item, 0) + qty for item,qty in incoming.items()})
 print(stock)                                    # ✅ {'연필': 10, '지우개': 9, '노트': 10, '볼펜': 12}
